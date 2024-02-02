@@ -77,3 +77,13 @@ msleep$brainwt[which(msleep$brainwt < Tmin| msleep$brainwt > Tmax)]
 msleep$brainwt[which(msleep$brainwt > Tmin| msleep$brainwt < Tmax)]
 msleep$brainwt_no_outliers <- msleep$brainwt[which(msleep$brainwt > Tmin| msleep$brainwt < Tmax)]
 view(msleep$brainwt_no_outliers)
+
+#### DATA VISUALIZATION ####
+msleep %>%
+  drop_na(vore) %>%
+  #filter(vore %in% c("herbi","omni")) %>%
+  ggplot(aes(fct_infreq(vore))) +
+  geom_bar(aes(fill = vore),show.legend = FALSE) +
+  labs(title = "ANIMAL FEEDING RELATIONSHIP",x="Feeding class")
+  
+

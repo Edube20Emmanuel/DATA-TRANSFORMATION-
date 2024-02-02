@@ -64,3 +64,16 @@ summary(msleep$sleep_cycle)
 IQR(msleep$sleep_cycle)
 #### msleep_cycle has no outliers
 
+#### AWAKE ####
+boxplot(msleep$awake) #No outliers
+
+### Detecting outliers in brainwt #####
+boxplot(msleep$brainwt)
+summary(msleep$brainwt)
+IQR(msleep$brainwt)
+Tmin = 0.00635 - (1.5*0.0287)
+Tmax = 0.3333 + (1.5*0.0287)
+msleep$brainwt[which(msleep$brainwt < Tmin| msleep$brainwt > Tmax)]
+msleep$brainwt[which(msleep$brainwt > Tmin| msleep$brainwt < Tmax)]
+msleep$brainwt_no_outliers <- msleep$brainwt[which(msleep$brainwt > Tmin| msleep$brainwt < Tmax)]
+view(msleep$brainwt_no_outliers)
